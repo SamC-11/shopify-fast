@@ -25,8 +25,6 @@ class Item(BaseModel):
 
 
 
-INVENTORY = []
-
 
 @app.get("/inventory")
 def inventory(db: Session = Depends(get_db)): #Depends handles dependency injections for db session
