@@ -11,7 +11,7 @@ Base = declarative_base()
 class Items(Base):
     __tablename__ = "items"
     id = Column(Integer, primary_key=True, index=True) 
-    name = Column(String, nullable = False, unique = True)
+    name = Column(String, nullable = False)
 
     #establishing relationship with Inventory
     children = relationship("Inventory",backref="items")
@@ -23,22 +23,23 @@ class Inventory(Base):
     
     id = Column(Integer, primary_key=True)
 
-    warehouse_id = Column(Integer)
+    warehouse_id = Column(Integer, ForeignKey('warehouses.id'))
     item_id = Column(Integer, ForeignKey('items.id'))
 
     quantity = Column(Integer, default = 0, nullable = False)
 
-
-    #establishing relationship with Warehouse
-    children = relationship("Warehouse",backref="inventory")
+    
 
 
 class Warehouse(Base):
     __tablename__ = "warehouses"
 
     id = Column(Integer, primary_key=True)
+    name = Column(String, nullable = False, unique = True)
 
-    inventory_id = Column(Integer, ForeignKey('inventory.id'))
+    #establishing relationship with Inventory
+    children = relationship("Inventory",backref="warehouses")
+    
 
     
 
