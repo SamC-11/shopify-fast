@@ -20,6 +20,7 @@ def get_db():
         db.close()
 
 class Item(BaseModel):
+    id: int = Field(gt=-1)
     name: str = Field(min_length=1)
     quantity: int = Field(gt=-1)
 
@@ -34,12 +35,25 @@ def inventory(db: Session = Depends(get_db)): #Depends handles dependency inject
 @app.post("/")
 def add_item(item: Item, db:Session = Depends(get_db)):
     
-    item_model = models.Inventory()
 
-    item_model.name = item.name
-    item_model.quantity = item.quantity 
+    #CHECK IF ITEM ALREADY EXISTS 
+    item_model = db.query(models.Items).filter(models.Items.id == item.id).first()
+    inventory_item_model = models.Inventory()
+
+    if item_model is None:
+        #create new item
+        item_model = models.Items()
+        item_model.name = item.name
+
+        #add item to inventory
+        inventory_item_model = models.Inventory()
+        inventory_item_model.warehouse_id = 5
+        inventory_item_model.item_id = item.id
+        inventory_item_model.quantity = item.quantity
+        
     
     db.add(item_model)
+    db.add(inventory_item_model)
     db.commit()
 
     return item

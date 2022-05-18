@@ -5,22 +5,42 @@ from database import Base
 
 Base = declarative_base()
 
-#Trying this out later, class for items. NOT the same as inventory for decoupling purposes
-#ID IS PKEY AND ID IN ITEMS WILL BE FKEY IF I DECIDE TO IMPLEMENT THIS
+
+
+#LIST OF ITEMS THAT EXIST
 class Items(Base):
     __tablename__ = "items"
-    id = Column(String, primary_key=True, index=True) 
+    id = Column(Integer, primary_key=True, index=True) 
     name = Column(String, nullable = False, unique = True)
-    children = relationship("Inventory")
 
+    #establishing relationship with Inventory
+    children = relationship("Inventory",backref="items")
+
+
+#LIST OF THE AMOUNT OF ITEMS IN YOUR INVENTORY
 class Inventory(Base):
     __tablename__ = "inventory"
     
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True)
 
-    item_id = Column(Integer, ForeignKey(Items.__table__.c['id']))
-
+    warehouse_id = Column(Integer)
+    item_id = Column(Integer, ForeignKey('items.id'))
 
     quantity = Column(Integer, default = 0, nullable = False)
+
+
+    #establishing relationship with Warehouse
+    children = relationship("Warehouse",backref="inventory")
+
+
+class Warehouse(Base):
+    __tablename__ = "warehouses"
+
+    id = Column(Integer, primary_key=True)
+
+    inventory_id = Column(Integer, ForeignKey('inventory.id'))
+
+    
+
 
 
