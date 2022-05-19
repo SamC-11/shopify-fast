@@ -1,5 +1,8 @@
 # FALL 2022 SHOPIFY BACKEND DEVELOPER CHALLENGE
-This is my submission for the Shopify Backend Developer Challenge. Since there was no ui-requirement, I just went ahead and spun up a quick little API that is easy to use for frontend developers. Got to learn a new framework too! 🍾
+This is my submission for the Shopify Backend Developer Challenge. 
+The extra feature I chose was: Ability to create warehouses/locations and assign inventory to specific locations
+
+Since there was no ui-requirement, I just went ahead and spun up a quick little API that is easy to use for frontend developers. Got to learn a new framework too! 🍾
 
 Made with FastAPI and :blue_heart: by Sam
 
