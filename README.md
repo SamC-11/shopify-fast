@@ -19,7 +19,7 @@ step 8: have fun!
 
 
 **SETTING THIS UP ON REPLIT**\
-step 1: fork my repl
+step 1: fork my repl\
 step 2: install dependencies with ``` pip install -r requirements.txt ```\
 step 3: cd into the shopify-fast/src folder\
 step 4: run ```python main.py```\
