@@ -23,8 +23,7 @@ step 1: fork my repl\
 step 2: install dependencies with ``` pip install -r requirements.txt ```\
 step 3: cd into the shopify-fast/src folder\
 step 4: run ```python main.py```\
-step 5: open up your browser and navigate to (https://shopify-fast--samc-11.repl.co/docs) for a list of all of the endpoints fully documented by openapi\
-step 6: have fun!
+step 5: have fun!
 
 ## WHAT THE ENDPOINTS LOOK LIKE
 ![image](https://user-images.githubusercontent.com/42423169/169671468-1cce5709-4f11-4bee-b88e-d771248959ea.png)
