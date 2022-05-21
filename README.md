@@ -1,6 +1,7 @@
 # FALL 2022 SHOPIFY BACKEND DEVELOPER CHALLENGE
-This is my submission for the Shopify Backend Developer Challenge. 
-The extra feature I chose was: Ability to create warehouses/locations and assign inventory to specific locations
+This is my submission for the Shopify Backend Developer Challenge.\
+
+Extra feature: Ability to create warehouses/locations and assign inventory to specific locations
 
 Made with FastAPI and :blue_heart: by Sam
 
