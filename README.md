@@ -19,11 +19,10 @@ step 8: have fun!
 
 
 **SETTING THIS UP ON REPLIT**\
-step 1: fork my repl\
-step 2: install dependencies with ``` pip install -r requirements.txt ```\
-step 3: cd into the shopify-fast/src folder\
-step 4: run ```python main.py```\
-step 5: have fun!
+step 1: got to my repl link\
+step 2: hit run\
+step 3: open the website and add /docs to the end of the url\
+
 
 ## WHAT THE ENDPOINTS LOOK LIKE
 ![image](https://user-images.githubusercontent.com/42423169/169671468-1cce5709-4f11-4bee-b88e-d771248959ea.png)
