@@ -6,38 +6,37 @@ from database import Base
 Base = declarative_base()
 
 
-
-#LIST OF ITEMS THAT EXIST
-class Items(Base):
-    __tablename__ = "items"
-    id = Column(Integer, primary_key=True) 
-    name = Column(String, nullable = False)
-
-    #establishing relationship with Inventory
-    children = relationship("Inventory",backref="items")
-
-
-#LIST OF THE AMOUNT OF ITEMS IN YOUR INVENTORY
+#LIST OF THE AMOUNT OF ITEMS IN YOUR INVENTORY AND THE WAREHOUSE THEY ARE STORED IN
 class Inventory(Base):
-    __tablename__ = "inventory"
+    __tablename__ = "Inventory"
     
     id = Column(Integer, primary_key=True)
 
-    warehouse_id = Column(Integer)
-    item_id = Column(Integer, ForeignKey('items.id'))
+    warehouse_id = Column("warehouse_id", Integer, ForeignKey('Warehouse.id'))
+    item_id = Column("item_id", Integer, ForeignKey('Item.id'))
 
     quantity = Column(Integer, default = 0, nullable = False)
+
+#LIST OF ITEMS THAT EXIST
+class Item(Base):
+    __tablename__ = "Item"
+    id = Column(Integer, primary_key=True) 
+    name = Column(String, nullable = False)
+
+    warehouses = relationship('Warehouse', secondary=Inventory.__table__, backref='Item')
+
 
     
 
 
 class Warehouse(Base):
-    __tablename__ = "warehouses"
+    __tablename__ = "Warehouse"
 
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable = False, unique = True)
 
- 
+    items = relationship('Item', secondary=Inventory.__table__, backref='Warehouse')
+
     
 
     
