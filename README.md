@@ -21,7 +21,7 @@ step 8: have fun!
 **SETTING THIS UP ON REPLIT**\
 step 1: got to my repl link\
 step 2: hit run\
-step 3: open the website and add /docs to the end of the url\
+step 3: open the website and add /docs to the end of the url
 
 
 ## WHAT THE ENDPOINTS LOOK LIKE
