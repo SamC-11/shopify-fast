@@ -60,7 +60,7 @@ def edit_warehouse(warehouse_id: int, new_name: str, db: Session = Depends(datab
     db.query(models.Warehouse).filter(models.Warehouse.id == warehouse_id).update({'name':new_name})
     db.commit()
 
-    return db.query(models.Item).filter(models.Warehouse.name == new_name).first()
+    return db.query(models.Warehouse).filter(models.Warehouse.name == new_name).first()
 
 
 
