@@ -35,12 +35,11 @@ def items(item_id: int, db: Session = Depends(database.get_db)): #Depends handle
 def new_item(item: helper_objects.Item, db:Session = Depends(database.get_db)):
 
     #CHECK IF ITEM DOES NOT EXIST AT ALL
-    item_model = db.query(models.Item).filter(models.Item.id == item.id).first()
+    item_model = db.query(models.Item).filter(models.Item.name == item.name).first()
 
     if item_model is None:
         #create new Item
         item_model = models.Item()
-        item_model.id = item.id
         item_model.name = item.name
 
         db.add(item_model)
@@ -48,10 +47,10 @@ def new_item(item: helper_objects.Item, db:Session = Depends(database.get_db)):
     else:
         raise HTTPException(
             status_code = 404,
-            detail = f"Item with ID {item.id} already exist"
+            detail = f"Item with name {item.name} already exist"
         )
 
-    return item
+    return db.query(models.Item).filter(models.Item.name == item.name).first()
 
 
 @router.put('/items/edit', summary="Edit an existing item given the id and a new name",tags=["ITEMS"])

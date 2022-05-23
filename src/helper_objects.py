@@ -2,7 +2,6 @@ from pydantic import BaseModel, Field
 
 #This class is to add new items
 class Item(BaseModel):
-    id: int = Field(gt=-1)
     name: str = Field(min_length=1)
     
 
@@ -16,5 +15,4 @@ class Inventory(BaseModel):
 
 #This class is the object used to add warehouse(s)
 class Warehouse(BaseModel):
-    id: int = Field(gt=-1)
     name: str = Field(min_length=1)
