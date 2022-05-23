@@ -69,5 +69,5 @@ This application relies on these OpenAPI documentations for the UI.
 -----
 
 **QUICK DEMO**
-This will be a quick demo of the application:
+This will be a quick demo of the application: https://youtu.be/y7WLmeZQbVs
 
