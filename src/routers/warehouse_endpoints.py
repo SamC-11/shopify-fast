@@ -30,10 +30,9 @@ def warehouses(warehouse_id:int,db: Session = Depends(database.get_db)): #Depend
 
 @router.post("/warehouses/new", summary="Create a new warehouse object given a JSON input",tags=["WAREHOUSES"])
 def new_warehouse(warehouse: helper_objects.Warehouse, db:Session = Depends(database.get_db)):
-    warehouse_model = db.query(models.Warehouse).filter(models.Warehouse.id == warehouse.id).first()
+    warehouse_model = db.query(models.Warehouse).filter(models.Warehouse.name == warehouse.name).first()
     if warehouse_model is None:
         warehouse_model = models.Warehouse()
-        warehouse_model.id = warehouse.id
         warehouse_model.name = warehouse.name
         db.add(warehouse_model)
         db.commit()
@@ -41,10 +40,10 @@ def new_warehouse(warehouse: helper_objects.Warehouse, db:Session = Depends(data
     else:
         raise HTTPException(
             status_code = 404,
-            detail = f"Warehouse with ID {warehouse.id} already exist"
+            detail = f"Warehouse with name {warehouse.name} already exist"
         )
     
-    return warehouse
+    return db.query(models.Warehouse).filter(models.Warehouse.name == warehouse.name).first()
     
 
 
@@ -61,7 +60,7 @@ def edit_warehouse(warehouse_id: int, new_name: str, db: Session = Depends(datab
     db.query(models.Warehouse).filter(models.Warehouse.id == warehouse_id).update({'name':new_name})
     db.commit()
 
-    return new_name
+    return db.query(models.Item).filter(models.Warehouse.name == new_name).first()
 
 
 
